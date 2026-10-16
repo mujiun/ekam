@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>30-Min Core &amp; Sculpt: Express Mat Pilates with Laura Moran - Ekam</title>
+<meta name="description" content="Center your mind and fire up your deep core in just 30 minutes. This express mat Pilates flow focuses on controlled, low-impact movements designed to lengthen, sculpt, and build functional stability throughout the entire body.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* page scaffold (compiled layout classes from the live-class view) */
+  .page { min-height: 100vh; background: hsl(var(--background)); }
+  @media (max-width: 639.98px) {
+    .page { padding-bottom: calc(7.5rem + var(--safe-area-bottom)); }
+  }
+
+  main.page-main { padding: 1.5rem 1rem; }
+  .page-col {
+    max-width: 42rem;            /* max-w-2xl */
+    margin-inline: auto;
+  }
+  .page-col > * + * { margin-top: 1rem; }   /* space-y-4 */
+
+  /* header content aligns with the page column on wide screens */
+  .site-header-inner { max-width: 66rem; margin-inline: auto; }
+
+  /* ---- desktop: two columns — big video left, narrower content right ---- */
+  @media (min-width: 1024px) {
+    main.page-main { padding: 2rem 2.5rem; }
+    .page-col {
+      max-width: 72rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 26rem);
+      gap: 0.75rem 1.5rem;
+      align-items: start;
+    }
+    .page-col > * + * { margin-top: 0; }
+    .page-col .cover {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: start;
+      position: sticky;
+      top: calc(4.5rem + 2rem + var(--safe-area-top));
+    }
+    .card, .disclaimer { grid-column: 2; }
+  }
+
+  /* cover media: still image on mobile, playing video on desktop */
+  .cover-reel { display: none; }
+  @media (min-width: 1024px) {
+    .cover-still { display: none; }
+    .cover-reel { display: block; }
+  }
+
+  .cover { position: relative; }
+  .cover img,
+  .cover video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 0.75rem;
+    object-fit: cover;
+  }
+  .cover-tag {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    background: hsl(var(--foreground) / 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: hsl(var(--primary-foreground));
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+  }
+  .cover-tag .live-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--destructive));
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  .meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding-inline: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .meta-list span { display: flex; align-items: center; gap: 0.5rem; }
+  .meta-list svg { height: 1rem; width: 1rem; flex-shrink: 0; }
+
+  /* head: avatar + name row, class title below */
+  .avatar-lg { height: 3rem; width: 3rem; }
+  .profile-row { display: flex; align-items: center; gap: 1rem; }
+  .profile-head { margin-bottom: 1.5rem; }
+  .class-meta-line {
+    margin-top: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .class-meta-line .star { color: hsl(var(--gold)); }
+  .profile-info { min-width: 0; flex: 1; }
+  .profile-title { font-size: 1.125rem; line-height: 1.5rem; font-weight: 700; }
+  .profile-name { font-size: 0.875rem; line-height: 1.25rem; font-weight: 600; }
+  .divider {
+    border: 0;
+    border-top: 1px solid hsl(var(--border) / 0.6);
+    margin: 0;
+  }
+  .profile-cred {
+    margin-top: 0.125rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .section-block > * + * { margin-top: 1rem; }
+
+  .panel-title { font-weight: 500; }
+
+  /* time slots — horizontal chips */
+  .slot-list {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    /* bleed through the card padding so chips scroll edge-to-edge */
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    scrollbar-width: none;
+  }
+  .slot-list::-webkit-scrollbar { display: none; }
+  .slot {
+    flex: 0 0 auto;
+    min-width: 7.5rem;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+    border: 1px solid hsl(var(--border) / 0.6);
+    background: transparent;
+    border-radius: 1rem;
+    padding: 0.625rem 0.75rem;
+    text-align: center;
+    color: hsl(var(--foreground));
+    transition: var(--transition-smooth);
+  }
+  .slot:hover { border-color: hsl(var(--accent) / 0.3); }
+  .slot-day {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .slot-time {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+  }
+  .slot.selected {
+    border-color: hsl(var(--accent));
+    box-shadow: inset 0 0 0 1px hsl(var(--accent));
+    background: hsl(var(--accent) / 0.08);
+  }
+  .slot.selected .slot-day { color: hsl(var(--accent)); }
+
+  /* "Learn more" expander */
+  .learn-more summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: hsl(var(--primary));
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .learn-more summary::-webkit-details-marker { display: none; }
+  .learn-more summary::after {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+    transition: transform 0.2s;
+  }
+  .learn-more[open] summary::after { transform: rotate(-135deg) translateY(-1px); }
+  .learn-more summary:hover { text-decoration: underline; }
+  .learn-more[open] summary { margin-bottom: 0.625rem; }
+
+  /* class plan: flat inside the card — no border, no side padding */
+  .class-plan {
+    border: 0;
+    padding-inline: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  /* class plan segment titles: same size as detail text, a bit thicker */
+  .class-plan .seg-title {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+  }
+
+  .about-bio {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    color: hsl(var(--foreground) / 0.9);
+    white-space: pre-wrap;
+  }
+
+  .class-desc {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .cta-block {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+  }
+  @media (min-width: 640px) { .cta-block { display: flex; } }
+  .cta-stack {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+
+  .disclaimer { padding-inline: 0.25rem; }
+
+  /* test1: no footer bar — just a floating CTA button */
+  .mobile-cta-bar {
+    background: transparent;
+    border-top: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+  }
+  .mobile-cta-bar .btn {
+    pointer-events: auto;
+    box-shadow: 0 10px 30px -8px hsl(var(--foreground) / 0.4);
+  }
+
+  /* hover: solid, 20% darker (no opacity) */
+  .btn-default:hover {
+    background: hsl(152 32% 19%);
+  }
+
+  /* CTA fills the content width */
+  .btn-cta { width: 100% !important; max-width: none; }
+
+  /* two-line CTA label */
+  .btn-cta {
+    white-space: normal;
+    text-align: center;
+    height: auto;
+    min-height: 3rem;
+    padding-block: 0.625rem;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .cta-line1 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+  }
+  .cta-line2 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 400;
+    color: hsl(var(--primary-foreground) / 0.8);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Fixed header: logo + class title -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand-link" href="https://ekamwellness.ai/" aria-label="Ekam home">
+        <img src="images/ekam-logo.webp" alt="">
+        <span class="wordmark">Ekam</span>
+      </a>
+      <div class="header-title-wrap">
+        <h1 class="header-title">30-Min Core &amp; Sculpt: Express Mat Pilates</h1>
+        <p class="header-subtitle">with Laura Moran</p>
+      </div>
+    </div>
+  </header>
+  <div class="site-header-spacer" aria-hidden="true"></div>
+
+  <main class="page-main container">
+    <div class="page-col">
+
+      <!-- Cover video -->
+      <div class="cover">
+        <img class="cover-still" src="images/reel-first-frame.jpg" alt="30-Min Core &amp; Sculpt: Express Mat Pilates">
+        <video class="cover-reel" src="images/ekam-landing-reel.mp4" poster="images/reel-first-frame.jpg" autoplay loop muted playsinline preload="metadata" aria-label="30-Min Core &amp; Sculpt: Express Mat Pilates"></video>
+        <span class="cover-tag"><span class="live-dot" aria-hidden="true"></span>Live • Small Group (10 people)</span>
+      </div>
+
+      <!-- Main card -->
+      <div class="card">
+        <div class="card-content">
+
+          <!-- Class title + meta, instructor below -->
+          <h2 class="profile-title">30-Min Core &amp; Sculpt: Express Mat Pilates with Laura</h2>
+          <p class="class-meta-line"><span class="star">&#9733;</span> 5.0 (32) &bull; English</p>
+          <div class="slot-list" id="slotList">
+            <button type="button" class="slot selected">
+              <span class="slot-day">Today</span>
+              <span class="slot-time">3:30 PM PST</span>
+            </button>
+            <button type="button" class="slot">
+              <span class="slot-day">Tomorrow</span>
+              <span class="slot-time">7:00 AM PST</span>
+            </button>
+            <button type="button" class="slot">
+              <span class="slot-day">Tomorrow</span>
+              <span class="slot-time">3:30 PM PST</span>
+            </button>
+            <button type="button" class="slot">
+              <span class="slot-day">Sat, Oct 18</span>
+              <span class="slot-time">3:30 PM PST</span>
+            </button>
+          </div>
+
+
+
+          <!-- Reserve -->
+          <div class="section-block" id="sec-reserve">
+            <div class="cta-block">
+              <div class="cta-stack">
+                <a class="btn btn-default btn-cta" href="https://ekamwellness.ai/live-class/b208496e-685b-4ab9-9372-817bc80faf57"><span class="cta-line1">Try it for $9</span><span class="cta-line2">Plus get 2 more free classes</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agenda -->
+          <div class="section-block" id="sec-agenda">
+            <section class="class-plan">
+              <div class="class-plan-head">
+                <h2>Class plan &bull; 30 min</h2>
+              </div>
+              <ol>
+                <li>
+                  <p class="seg-min">4 min</p>
+                  <div class="seg-body">
+                    <p class="seg-title">Warm-up</p>
+                    <p class="seg-detail">Breath and mobility to wake the body.</p>
+                  </div>
+                </li>
+                <li>
+                  <p class="seg-min">22 min</p>
+                  <div class="seg-body">
+                    <p class="seg-title">Core &amp; sculpt</p>
+                    <p class="seg-detail">Hundreds, roll-ups, side-lying series and bridges, with form cues from Laura.</p>
+                  </div>
+                </li>
+                <li>
+                  <p class="seg-min">4 min</p>
+                  <div class="seg-body">
+                    <p class="seg-title">Cool-down</p>
+                    <p class="seg-detail">Stretch and down-regulate the breath.</p>
+                  </div>
+                </li>
+              </ol>
+              <p class="equipment">Join from <strong>phone or browser</strong> &bull; Need a <strong>yoga mat</strong></p>
+            </section>
+          </div>
+
+          <!-- Class intro (collapsed) -->
+          <details class="learn-more">
+            <summary>Learn more about the class</summary>
+            <p class="class-desc">Center your mind and fire up your deep core in just 30 minutes. This express mat Pilates flow focuses on controlled, low-impact movements designed to lengthen, sculpt, and build functional stability throughout the entire body. Perfect for all fitness levels, tune in to your breath, and leave feeling taller, stronger, and energized.</p>
+          </details>
+
+
+
+        </div>
+      </div>
+
+
+      <!-- Instructor card -->
+      <div class="card">
+        <div class="card-content">
+          <div class="profile-head">
+            <div class="profile-row">
+              <div class="avatar avatar-lg avatar-ring">
+                <img src="images/instructor-laura.jpg" alt="Laura Moran" style="object-position: center 20%;">
+              </div>
+              <div class="profile-info">
+                <p class="profile-name">Laura Moran</p>
+                <p class="profile-cred">BASI certified &bull; 8 years teaching</p>
+              </div>
+            </div>
+          </div>
+          <p class="about-bio">Teaching since 2018, I am a certified Pilates instructor through BASI Pilates.  While Pilates is my passion and focus, I am a 200-RYT and have my CPT through NASM. I create effective workouts that utilize the whole body, drawing on my different fitness educations.   Proper form and setup are crucial to execution of the exercise, and I always try to setup the students for success. When I'm not teaching or working out myself, I am probably spending time with my furry children, reading, or listening or playing music.</p>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">Wellness guidance only, not medical advice. For serious symptoms, see a doctor. <a href="https://ekamwellness.ai/terms">Terms</a></p>
+
+    </div>
+  </main>
+
+  <!-- Mobile fixed bottom CTA -->
+  <div class="mobile-cta-bar">
+    <div class="mobile-cta-bar-inner">
+      <div class="cta-stack">
+        <a class="btn btn-default btn-cta" href="https://ekamwellness.ai/live-class/b208496e-685b-4ab9-9372-817bc80faf57"><span class="cta-line1">Try it for $9</span><span class="cta-line2">Plus get 2 more free classes</span></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+  // Time slots — nearest is selected by default; click to switch
+  document.querySelectorAll('#slotList .slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+      document.querySelectorAll('#slotList .slot').forEach(s => s.classList.toggle('selected', s === slot));
+    });
+  });
+
+</script>
+</body>
+</html>
