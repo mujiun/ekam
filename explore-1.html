@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekam — Exploration 1 · Marketplace Energy (ClassPass direction)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cobalt:#2A513F;
+  --cobalt-deep:#1F3E30;
+  --ink:#10163A;
+  --ink-60:rgba(16,22,58,.62);
+  --ink-40:rgba(16,22,58,.42);
+  --ice:#EDF2EE;
+  --ice-deep:#DBE6DE;
+  --citron:#E3FE54;
+  --citron-deep:#C8E62E;
+  --paper:#FFFFFF;
+  --coral:#FF5C39;
+  --radius-lg:28px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --display:'Bricolage Grotesque',sans-serif;
+  --body:'Schibsted Grotesk',sans-serif;
+  --shadow-card:0 2px 6px rgba(16,22,58,.05),0 18px 40px -18px rgba(16,22,58,.18);
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt)}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.015em}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:700;font-size:15px;border-radius:999px;padding:15px 28px;cursor:pointer;border:none;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--cobalt);color:#fff}
+.btn-primary:hover{background:var(--cobalt-deep);box-shadow:0 10px 24px -8px rgba(42,81,63,.5)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(16,22,58,.2)}
+.btn-ghost:hover{background:var(--ice)}
+.btn-citron{background:var(--citron);color:var(--ink)}
+.btn-citron:hover{background:var(--citron-deep)}
+
+/* ───────── header ───────── */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(16,22,58,.07)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.02em}
+.logo img{height:30px;width:30px;object-fit:contain}
+.nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:600;color:var(--ink-60)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;gap:10px}
+.nav-cta .btn{padding:11px 20px;font-size:14px}
+
+/* ───────── hero ───────── */
+.hero{background:linear-gradient(180deg,var(--ice) 0%,#fff 100%);overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(42,81,63,.10),transparent 65%);top:-180px;right:-120px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:66px 0 76px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid rgba(16,22,58,.1);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;box-shadow:var(--shadow-card)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--coral);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,92,57,.5)}60%{box-shadow:0 0 0 7px rgba(255,92,57,0)}}
+.hero h1{font-size:clamp(44px,5.2vw,66px);line-height:1.02;margin-top:18px;font-weight:800}
+.flip-wrap{display:inline-grid;vertical-align:bottom;overflow:hidden;height:1.06em}
+.flip-inner{display:grid;transition:transform .55s cubic-bezier(.76,0,.24,1)}
+.flip-inner span{height:1.06em;line-height:1.06;color:var(--cobalt);white-space:nowrap}
+.hero-sub{margin-top:14px;font-size:14px;line-height:1.55;color:var(--ink-60);max-width:440px}
+.hero-ctas{margin-top:22px;display:flex;gap:12px;align-items:center}
+.hero-proof{margin-top:18px;display:flex;gap:20px;font-size:13px;font-weight:600;color:var(--ink-60);flex-wrap:wrap}
+.hero-proof span{display:flex;align-items:center;gap:6px}
+.hero-proof b{color:var(--ink)}
+
+/* hero collage */
+.collage{position:relative;height:520px}
+.collage-card{position:absolute;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);background:#fff}
+.collage-card img,.collage-card video{width:100%;height:100%;object-fit:cover}
+.cc-1{width:70%;height:62%;top:0;right:0;animation:float1 7s ease-in-out infinite}
+.cc-2{width:50%;height:46%;bottom:0;left:2%;animation:float2 8s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.cc-tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.cc-tag.live{left:auto;bottom:auto;top:14px;right:14px}
+.cc-tag.live .live-dot{background:var(--coral)}
+/* floating mini cards */
+.mini-card{position:absolute;background:#fff;border-radius:18px;box-shadow:0 4px 10px rgba(16,22,58,.06),0 24px 48px -16px rgba(16,22,58,.25);border:1px solid rgba(16,22,58,.07);z-index:3}
+.mini-sched{top:5%;left:-9%;width:244px;padding:16px 16px 8px;animation:float2 6.5s ease-in-out infinite}
+.ms-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px}
+.ms-head b{font-family:var(--display);font-size:14.5px;font-weight:800}
+.ms-head span{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:var(--cobalt);background:var(--ice);border-radius:999px;padding:4px 9px}
+.ms-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(16,22,58,.07)}
+.ms-time{font-size:11px;font-weight:800;color:var(--ink-60);width:52px;flex:0 0 auto}
+.ms-row div{min-width:0}
+.ms-row b{display:block;font-size:12.5px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-row small{display:block;font-size:10.5px;line-height:1.25;color:var(--ink-60);font-weight:600}
+.ms-live{margin-left:auto;flex:0 0 auto;font-size:9.5px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--coral);border-radius:6px;padding:3px 7px}
+.ms-range{display:grid;gap:2px;line-height:1.1}
+.ms-range i{font-style:normal}
+.ms-range u{width:1.5px;height:5px;background:rgba(16,22,58,.3);margin-left:3px;text-decoration:none}
+.ms-work{background:#F1F2F4;border-radius:9px;padding:7px 10px;margin:3px -10px;border-top:none}
+.ms-work+.ms-row{border-top:none}
+.ms-work b{color:var(--ink-60)}
+.ms-join{margin-left:auto;flex:0 0 auto;font-size:10px;font-weight:800;color:var(--cobalt);background:var(--ice);border-radius:6px;padding:3px 8px}
+.mini-dash{bottom:0;right:-2%;width:232px;padding:18px;animation:float1 7.5s ease-in-out infinite}
+.md-label{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--ink-60)}
+.md-score{display:flex;align-items:baseline;gap:9px;margin-top:8px;font-family:var(--display)}
+.md-score b{font-size:42px;font-weight:800;line-height:1}
+.md-score s{font-size:19px;color:var(--ink-40);font-weight:700}
+.md-delta{margin-left:auto;font-size:11px;font-weight:800;color:#0B9D58;background:#E7F6EE;border-radius:999px;padding:4px 9px}
+.md-sub{margin-top:9px;font-size:11px;font-weight:600;color:var(--ink-60);display:flex;justify-content:space-between}
+.md-sub b{color:var(--ink)}
+
+/* stats strip */
+.stats-strip{border-block:1px solid rgba(16,22,58,.08);background:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stats-grid div{padding:26px 16px;border-left:1px solid rgba(16,22,58,.08)}
+.stats-grid div:first-child{border-left:none}
+.stats-grid b{display:block;font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.02em}
+.stats-grid small{font-size:13.5px;color:var(--ink-60);font-weight:600}
+
+/* ───────── 3 feature cards ───────── */
+.features{padding:96px 0 40px}
+.sec-head{max-width:720px}
+.sec-head h2{font-size:clamp(32px,3.6vw,48px);line-height:1.08;margin-top:14px}
+.sec-head p{margin-top:16px;font-size:17px;color:var(--ink-60);line-height:1.6}
+.feat-grid{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feat-card{border-radius:var(--radius-lg);padding:36px 32px;min-height:300px;display:flex;flex-direction:column;transition:transform .3s ease}
+.feat-card:hover{transform:translateY(-6px)}
+.feat-card.c1,.feat-card.c2,.feat-card.c3{background:var(--ice);color:var(--ink)}
+.feat-num{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.14em;color:var(--cobalt)}
+.feat-card h3{font-size:26px;margin-top:auto;line-height:1.15;padding-top:48px}
+.feat-card p{margin-top:10px;font-size:15px;line-height:1.55;opacity:.8}
+
+/* ───────── class carousel ───────── */
+.carousel-sec{padding:88px 0}
+.car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.car-nav{display:flex;gap:10px}
+.car-btn{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(16,22,58,.18);background:#fff;cursor:pointer;font-size:18px;display:grid;place-items:center;transition:all .15s}
+.car-btn:hover{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.cat-chips{display:flex;gap:9px;flex-wrap:wrap;width:100%;margin-top:22px}
+.cat-chips button{font-family:var(--body);font-size:13.5px;font-weight:700;padding:9px 18px;border-radius:999px;border:1.5px solid rgba(16,22,58,.14);background:#fff;cursor:pointer;color:var(--ink-60);transition:all .15s}
+.cat-chips button.on,.cat-chips button:hover{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.week-wrap{margin:26px calc(50% - 50vw + 20px) 0;overflow-x:auto;background:rgba(42,81,63,.07);border-radius:48px;padding:56px 64px}
+.wk{display:grid;grid-template-columns:50px repeat(7,1fr);gap:8px;min-width:1060px}
+.wk-corner{}
+.wk-head{text-align:center;padding:4px 0 8px}
+.wk-head b{font-family:var(--display);font-size:14px;font-weight:800;display:block}
+.wk-head small{font-size:11px;font-weight:600;color:var(--ink-60)}
+.wk-time{font-size:10px;font-weight:800;color:var(--ink-40);text-align:right;padding:10px 4px 0 0;letter-spacing:.03em}
+.cell{background:#fff;border-radius:10px;padding:9px 11px;cursor:pointer;transition:background .15s,opacity .3s}
+.cell:hover{background:var(--citron)}
+.cell b{display:block;font-size:12px;font-weight:700;line-height:1.25}
+.cell small{display:block;font-size:10px;font-weight:600;color:var(--ink-60);line-height:1.3;margin-top:1px}
+.cell.dim{opacity:.16;pointer-events:none}
+.cell-video{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.cell-video video,.cell-video img{width:100%;height:58px;object-fit:cover;display:block}
+.cell-video .cv-cap{padding:7px 11px 9px}
+
+/* ───────── instructors ───────── */
+.world{background:var(--cobalt-deep);color:#fff;padding:96px 0;border-radius:48px;margin:0 20px}
+.world .eyebrow{color:var(--citron)}
+.world-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.world h2{font-size:clamp(32px,3.4vw,46px);line-height:1.08;margin-top:14px}
+.world p.lead{margin-top:18px;font-size:16.5px;line-height:1.65;color:rgba(255,255,255,.72)}
+.flag-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.flag-row span{font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.tutor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tutor{border-radius:var(--radius-md);overflow:hidden;position:relative;aspect-ratio:3/4;background:#24473A}
+.tutor img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tutor:hover img{transform:scale(1.06)}
+.tutor figcaption{position:absolute;inset-inline:0;bottom:0;padding:34px 13px 12px;background:linear-gradient(transparent,rgba(16,32,25,.9));font-size:13px;font-weight:700}
+.tutor figcaption small{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.72);margin-top:2px}
+.tutor:nth-child(2){translate:0 26px}
+.tutor:nth-child(5){translate:0 26px}
+
+/* ───────── dashboard ───────── */
+.dash{padding:110px 0}
+.dash-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
+.dash-points{margin-top:34px;display:grid;gap:4px}
+.dash-point{display:flex;gap:16px;padding:18px;border-radius:var(--radius-md);transition:background .2s}
+.dash-point:hover{background:var(--ice)}
+.dp-ic{flex:0 0 44px;height:44px;border-radius:12px;background:var(--ice-deep);display:grid;place-items:center;font-size:19px}
+.dash-point h4{font-size:16.5px;font-weight:700;font-family:var(--display)}
+.dash-point p{font-size:14px;color:var(--ink-60);margin-top:3px;line-height:1.5}
+.device-chips{margin-top:28px;display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.device-chips span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--ink)}
+/* mock dashboard panel */
+.panel{background:linear-gradient(160deg,#fff, var(--ice));border:1px solid rgba(16,22,58,.08);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);padding:28px;position:relative}
+.panel-head{display:flex;justify-content:space-between;align-items:center}
+.panel-head b{font-family:var(--display);font-size:18px}
+.panel-head span{font-size:12px;font-weight:700;color:var(--cobalt);background:var(--ice-deep);padding:6px 12px;border-radius:999px}
+.rings{display:flex;gap:22px;margin-top:24px;align-items:center}
+.ring{position:relative;width:118px;height:118px;flex:0 0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring .val{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--display)}
+.ring .val b{font-size:34px;display:block;line-height:1.05}
+.ring .val small{font-size:8.5px;color:var(--ink-60);font-weight:700;letter-spacing:.05em}
+.metric-rows{flex:1;display:grid;gap:12px}
+.metric-row{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:12px;padding:12px 16px;border:1px solid rgba(16,22,58,.07)}
+.metric-row small{font-size:12.5px;font-weight:600;color:var(--ink-60)}
+.metric-row b{font-size:15px}
+.delta{font-size:12px;font-weight:800;color:#0B9D58}
+.delta.down{color:#0B9D58}
+.spark{margin-top:22px;background:#fff;border-radius:14px;padding:18px;border:1px solid rgba(16,22,58,.07)}
+.spark-top{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.spark-top span{color:var(--ink-60);font-weight:600}
+.suggest{margin-top:18px;background:var(--cobalt-deep);color:#fff;border-radius:14px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.suggest p{font-size:13.5px;line-height:1.5}
+.suggest p b{color:var(--citron)}
+.suggest button{flex:0 0 auto;background:var(--citron);border:none;color:var(--ink);font-weight:800;font-size:13px;padding:10px 18px;border-radius:999px;cursor:pointer}
+
+/* ───────── testimonials ───────── */
+.social{background:var(--ice);padding:100px 0;border-radius:48px;margin:0 20px}
+.quote-grid{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.quote-card{background:#fff;border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column}
+.stars{color:#F5A623;font-size:15px;letter-spacing:2px}
+.quote-card blockquote{margin-top:16px;font-family:var(--display);font-size:19px;line-height:1.4;font-weight:600;flex:1}
+.q-metric{margin-top:22px;background:var(--ice);border-radius:12px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between}
+.q-metric small{font-size:12px;font-weight:700;color:var(--ink-60)}
+.q-metric b{font-size:14px}
+.q-metric b em{font-style:normal;color:var(--ink-40);font-weight:600}
+.q-metric b strong{color:var(--cobalt)}
+.q-who{margin-top:18px;font-size:13px;color:var(--ink-60)}
+.q-who b{color:var(--ink)}
+
+/* ───────── pricing ───────── */
+.pricing{padding:110px 0}
+.price-grid{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price-card{border:1.5px solid rgba(16,22,58,.12);border-radius:var(--radius-lg);padding:34px;display:flex;flex-direction:column;position:relative;background:#fff}
+.price-card.hot{background:var(--cobalt-deep);color:#fff;border-color:var(--cobalt-deep);transform:scale(1.03);box-shadow:0 30px 60px -24px rgba(16,22,58,.4)}
+.hot-tag{position:absolute;top:-14px;left:50%;translate:-50% 0;background:var(--citron);color:var(--ink);font-size:11.5px;font-weight:800;letter-spacing:.08em;padding:7px 16px;border-radius:999px}
+.price-card h3{font-size:21px}
+.price-card .amount{margin-top:20px;font-family:var(--display)}
+.price-card .amount b{font-size:52px;font-weight:800;letter-spacing:-.03em}
+.price-card .amount span{font-size:14.5px;color:var(--ink-60);font-weight:600}
+.price-card.hot .amount span{color:rgba(255,255,255,.65)}
+.price-note{margin-top:4px;font-size:12.5px;font-weight:700;color:var(--cobalt)}
+.price-card.hot .price-note{color:var(--citron)}
+.price-feats{margin-top:24px;display:grid;gap:12px;font-size:14px;flex:1}
+.price-feats span{display:flex;gap:10px;align-items:flex-start;line-height:1.45}
+.price-feats span::before{content:"✓";font-weight:800;color:var(--cobalt)}
+.price-card.hot .price-feats span::before{color:var(--citron)}
+.price-card .btn{margin-top:28px;justify-content:center}
+.price-foot{margin-top:26px;text-align:center;font-size:13.5px;color:var(--ink-60)}
+
+/* ───────── faq + cta ───────── */
+.faq{padding:40px 0 110px;max-width:860px;margin:0 auto}
+.faq h2{text-align:center;font-size:clamp(30px,3vw,42px)}
+.faq-list{margin-top:40px;display:grid;gap:12px}
+details{background:#fff;border:1.5px solid rgba(16,22,58,.11);border-radius:var(--radius-md);padding:22px 26px;transition:border-color .2s}
+details[open]{border-color:var(--cobalt)}
+summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+summary::after{content:"+";font-family:var(--display);font-size:24px;color:var(--cobalt);font-weight:600;transition:rotate .2s}
+details[open] summary::after{rotate:45deg}
+details p{margin-top:12px;font-size:14.5px;line-height:1.6;color:var(--ink-60)}
+.final{margin:0 20px 20px;background:var(--cobalt);border-radius:48px;color:#fff;text-align:center;padding:110px 32px;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(227,254,84,.22),transparent 65%);top:-200px;left:-120px}
+.final h2{font-size:clamp(36px,4.4vw,58px);line-height:1.05;position:relative}
+.final p{margin-top:18px;font-size:17px;color:rgba(255,255,255,.8);position:relative}
+.final .btn{margin-top:36px;position:relative}
+footer{padding:36px 0;text-align:center;font-size:13px;color:var(--ink-40)}
+
+/* reveal on scroll */
+.reveal{opacity:0;translate:0 26px;transition:opacity .7s ease, translate .7s ease}
+.reveal.in{opacity:1;translate:0 0}
+@media (max-width:1020px){
+  .hero-grid,.world-grid,.dash-grid{grid-template-columns:1fr;gap:44px}
+  .feat-grid,.quote-grid,.price-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+  .feat-grid{margin-top:48px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid div:nth-child(3){border-left:none}
+  .collage{height:420px}
+  .nav-links{display:none}
+  .price-card.hot{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#"><img src="assets/ekam-logo.png" alt="">ekam</a>
+    <nav class="nav-links">
+      <a href="#classes">Classes</a>
+      <a href="#instructors">Instructors</a>
+      <a href="#dashboard">Your dashboard</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#">Log in</a>
+      <a class="btn btn-primary" href="#pricing">Try 14 days free</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-badge"><span class="live-dot"></span>62 live classes this week · taught by real coaches</span>
+      <h1>Live
+        <span class="flip-wrap"><span class="flip-inner" id="flip">
+          <span>yoga</span><span>meditation</span><span>boxing</span><span>pilates</span><span>breathwork</span><span>yoga</span>
+        </span></span><br>
+        that fits a full calendar.
+      </h1>
+      <p class="hero-sub">Small-group classes with a coach who knows your name — 30–45 minutes, from your living room.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#pricing">Get 14 days free</a>
+        <a class="btn btn-ghost" href="#classes">See today’s classes</a>
+      </div>
+      <div class="hero-proof">
+        <span>★ <b>5.0</b> on the App Store</span>
+        <span><b>No credit card</b> to start</span>
+        <span>Cancel anytime</span>
+      </div>
+    </div>
+    <div class="collage">
+      <div class="mini-card mini-sched">
+        <div class="ms-head"><b>Today’s schedule</b></div>
+        <div class="ms-row"><span class="ms-time">8:00 AM</span><div><b>Morning Flow</b><small>Khushboo · 45 min</small></div><span class="ms-live">LIVE</span></div>
+        <div class="ms-row ms-work"><span class="ms-time ms-range"><i>9:00 AM</i><u></u><i>5:00 PM</i></span><div><b>Work</b><small>Back-to-back meetings</small></div></div>
+        <div class="ms-row"><span class="ms-time">7:00 PM</span><div><b>Evening Boxing</b><small>Bruno · 30 min</small></div><span class="ms-join">Join</span></div>
+      </div>
+      <div class="collage-card cc-1">
+        <video src="assets/hero-demo.mp4" autoplay loop muted playsinline></video>
+        <span class="cc-tag live"><span class="live-dot"></span>LIVE · Vinyasa with Khushboo</span>
+      </div>
+      <div class="collage-card cc-2">
+        <img src="assets/home-follow.jpg" style="object-position:center 55%" alt="Member following the class from home">
+        <span class="cc-tag">🏠 Following along at home</span>
+      </div>
+      <div class="mini-card mini-dash">
+        <span class="md-label">SLEEP SCORE · THIS WEEK</span>
+        <div class="md-score"><s>38</s><b>71</b><span class="md-delta">▲ +33</span></div>
+        <svg viewBox="0 0 200 38" width="100%" height="34" style="margin-top:8px">
+          <path d="M0,31 C24,30 36,34 54,27 C74,20 88,24 106,17 C126,10 146,14 166,7 L200,4" fill="none" stroke="#2A513F" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="200" cy="4" r="4" fill="#2A513F"/>
+        </svg>
+        <div class="md-sub"><span>Sleep <b>7.6h ▲</b></span><span>Rest HR <b>64 ▼</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="wrap stats-grid">
+    <div class="reveal"><b>250+</b><small>live classes every month</small></div>
+    <div class="reveal"><b>25</b><small>disciplines — yoga to boxing</small></div>
+    <div class="reveal"><b>12</b><small>countries our coaches teach from</small></div>
+    <div class="reveal"><b>30–45</b><small>minutes, no commute</small></div>
+  </div>
+</section>
+
+<!-- 3 FEATURES -->
+<section class="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Why Ekam works</p>
+      <h2>Three things no streaming app gives you.</h2>
+      <p>Recordings don’t notice when you stop showing up. Ekam is live people, from everywhere, with proof it’s working.</p>
+    </div>
+    <div class="feat-grid">
+      <article class="feat-card c1 reveal">
+        <span class="feat-num">01 — LIVE SESSIONS</span>
+        <h3>A real coach, live.</h3>
+        <p>Small groups where someone sees your form and expects you back.</p>
+      </article>
+      <article class="feat-card c2 reveal" style="transition-delay:.1s">
+        <span class="feat-num">02 — WORLDWIDE</span>
+        <h3>Worldwide teachers.</h3>
+        <p>Hatha from Mumbai, Pilates from Lisbon, boxing from Buenos Aires.</p>
+      </article>
+      <article class="feat-card c3 reveal" style="transition-delay:.2s">
+        <span class="feat-num">03 — YOUR DASHBOARD</span>
+        <h3>Proof on your wrist.</h3>
+        <p>Connect your watch and see sleep, heart rate and stress improve.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLASS CAROUSEL -->
+<section class="carousel-sec" id="classes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Live schedule</p>
+      <h2>This week’s classes.</h2>
+    </div>
+    <div class="cat-chips reveal" style="align-items:center">
+      <button class="on">All</button><button data-f="yoga">Yoga</button><button data-f="meditation">Meditation</button><button data-f="boxing">Boxing &amp; HIIT</button><button data-f="pilates">Pilates</button><button data-f="breathwork">Breathwork</button><button data-f="sleep">Sleep</button>
+      <a class="btn btn-ghost" style="margin-left:auto;padding:9px 18px;font-size:13.5px" href="#">Full schedule</a>
+    </div>
+    <div class="week-wrap">
+    <div class="wk">
+      <div class="wk-corner"></div>
+      <div class="wk-head"><b>Mon</b><small>Oct 19</small></div>
+      <div class="wk-head"><b>Tue</b><small>Today</small></div>
+      <div class="wk-head"><b>Wed</b><small>Oct 21</small></div>
+      <div class="wk-head"><b>Thu</b><small>Oct 22</small></div>
+      <div class="wk-head"><b>Fri</b><small>Oct 23</small></div>
+      <div class="wk-head"><b>Sat</b><small>Oct 24</small></div>
+      <div class="wk-head"><b>Sun</b><small>Oct 25</small></div>
+      <div class="wk-time">7:00 AM</div>
+      <div class="cell cell-video" data-cat="yoga"><video src="assets/ekam-reel-yoga-sunrise.mp4" autoplay muted loop playsinline preload="metadata"></video><div class="cv-cap"><b>Sunrise Flow</b><small>Khushboo · 45m</small></div></div>
+      <div class="cell cell-video" data-cat="pilates"><img src="assets/wenyoga-aerial-pilates.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Mat Pilates</b><small>Serafina · 45m</small></div></div>
+      <div class="cell cell-video" data-cat="yoga"><img src="assets/class-yoga.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Vinyasa Flow</b><small>Aditi · 45m</small></div></div>
+      <div class="cell cell-video" data-cat="yoga"><img src="assets/welcome-yoga.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Hatha Basics</b><small>Khushboo · 45m</small></div></div>
+      <div class="cell cell-video" data-cat="yoga"><img src="assets/wenyoga-wheel-yoga.png" alt="" loading="lazy"><div class="cv-cap"><b>Tai Chi Morning</b><small>Vivian · 40m</small></div></div>
+      <div class="cell cell-video" data-cat="yoga"><img src="assets/moment-yoga.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Weekend Flow</b><small>Aditi · 45m</small></div></div>
+      <div class="cell cell-video" data-cat="yoga"><img src="assets/wenyoga-aerial-yoga.png" alt="" loading="lazy"><div class="cv-cap"><b>Sunday Slow Flow</b><small>Khushboo · 45m</small></div></div>
+      <div class="wk-time">9:30 AM</div>
+      <div class="cell" data-cat="pilates"><b>Power Pilates</b><small>Serafina · 40m</small></div>
+      <div class="cell" data-cat="yoga"><b>Vinyasa Express</b><small>Aditi · 30m</small></div>
+      <div class="cell" data-cat="boxing"><b>Wake-Up HIIT</b><small>Bruno · 20m</small></div>
+      <div class="cell" data-cat="boxing"><b>Boxing Fundamentals</b><small>Bruno · 30m</small></div>
+      <div class="cell" data-cat="boxing"><b>Quick Burn</b><small>Bruno · 20m</small></div>
+      <div class="cell" data-cat="boxing"><b>Strength Camp</b><small>Serafina · 45m</small></div>
+      <div class="cell" data-cat="pilates"><b>Full-Body Pilates</b><small>Serafina · 45m</small></div>
+      <div class="wk-time">12:15 PM</div>
+      <div class="cell" data-cat="boxing"><b>Lunch Boxing</b><small>Bruno · 30m</small></div>
+      <div class="cell" data-cat="meditation"><b>Reset Meditation</b><small>Simran · 20m</small></div>
+      <div class="cell" data-cat="pilates"><b>Lunch Pilates</b><small>Serafina · 30m</small></div>
+      <div class="cell" data-cat="boxing"><b>HIIT Express</b><small>Bruno · 25m</small></div>
+      <div class="cell" data-cat="meditation"><b>Lunch Meditation</b><small>Simran · 20m</small></div>
+      <div class="cell" data-cat="boxing"><b>Boxing Skills</b><small>Bruno · 35m</small></div>
+      <div class="cell" data-cat="yoga"><b>Mobility & Stretch</b><small>Vivian · 30m</small></div>
+      <div class="wk-time">4:30 PM</div>
+      <div class="cell" data-cat="yoga"><b>Mobility Break</b><small>Aditi · 20m</small></div>
+      <div class="cell" data-cat="pilates"><b>Core Quickie</b><small>Serafina · 15m</small></div>
+      <div class="cell" data-cat="yoga"><b>Prenatal Gentle</b><small>Saraswati · 35m</small></div>
+      <div class="cell" data-cat="yoga"><b>Posture Reset</b><small>Vivian · 20m</small></div>
+      <div class="cell" data-cat="pilates"><b>Postpartum Core</b><small>Saraswati · 40m</small></div>
+      <div class="cell" data-cat="yoga"><b>Restorative Yoga</b><small>Aditi · 35m</small></div>
+      <div class="cell" data-cat="yoga"><b>Prep-for-Monday Flow</b><small>Aditi · 30m</small></div>
+      <div class="wk-time">7:00 PM</div>
+      <div class="cell cell-video" data-cat="boxing"><img src="assets/welcome-strength.jpg" alt="" loading="lazy"><div class="cv-cap"><b>After-Work HIIT</b><small>Bruno · 30m</small></div></div>
+      <div class="cell cell-video" data-cat="boxing"><img src="assets/class-strength.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Evening Boxing</b><small>Bruno · 30m</small></div></div>
+      <div class="cell cell-video" data-cat="breathwork"><video src="assets/yoga-meditation-reel.mp4" autoplay muted loop playsinline preload="metadata"></video><div class="cv-cap"><b>Breathwork</b><small>Pouria · 30m</small></div></div>
+      <div class="cell cell-video" data-cat="pilates"><img src="assets/focus-movement.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Evening Pilates</b><small>Serafina · 40m</small></div></div>
+      <div class="cell cell-video" data-cat="boxing"><img src="assets/moment-strength.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Friday Boxing</b><small>Bruno · 30m</small></div></div>
+      <div class="cell cell-video" data-cat="sleep"><video src="assets/ekam-reel-zen-water.mp4" autoplay muted loop playsinline preload="metadata"></video><div class="cv-cap"><b>Sound Bath</b><small>Simran · 40m</small></div></div>
+      <div class="cell cell-video" data-cat="breathwork"><img src="assets/welcome-meditation.jpg" alt="" loading="lazy"><div class="cv-cap"><b>Evening Breathwork</b><small>Pouria · 30m</small></div></div>
+      <div class="wk-time">9:30 PM</div>
+      <div class="cell" data-cat="sleep"><b>Sleep Sound Bath</b><small>Simran · 35m</small></div>
+      <div class="cell" data-cat="sleep"><b>Sleep Meditation</b><small>Simran · 30m</small></div>
+      <div class="cell" data-cat="sleep"><b>Wind-Down</b><small>Vivian · 25m</small></div>
+      <div class="cell" data-cat="sleep"><b>Sound Bath</b><small>Simran · 35m</small></div>
+      <div class="cell" data-cat="sleep"><b>Sleep Meditation</b><small>Simran · 30m</small></div>
+      <div class="cell" data-cat="sleep"><b>Deep Rest</b><small>Vivian · 30m</small></div>
+      <div class="cell" data-cat="sleep"><b>Sleep Sound Bath</b><small>Simran · 35m</small></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="dash" id="dashboard">
+  <div class="wrap dash-grid">
+    <div class="reveal">
+      <p class="eyebrow">Your wellbeing dashboard</p>
+      <div class="sec-head"><h2>Proof it’s working — on your own body.</h2></div>
+      <div class="dash-points">
+        <div class="dash-point"><div class="dp-ic">⌚</div><div><h4>Connect any device</h4><p>Apple Watch, Oura, Garmin, Fitbit or just your phone — synced through Apple Health &amp; Health Connect.</p></div></div>
+        <div class="dash-point"><div class="dp-ic">📈</div><div><h4>Track mind and body together</h4><p>Sleep, heart rate, HRV and stress — tied to the classes you actually took, so you see what helps.</p></div></div>
+        <div class="dash-point"><div class="dp-ic">🎯</div><div><h4>Get tonight’s suggestion</h4><p>Short on sleep? Ekam suggests breathwork, not another HIIT class. A wearable is never required.</p></div></div>
+      </div>
+      <div class="device-chips">
+        <span><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 20.4S3.6 15.2 3.6 9.3c0-3 2.3-5.1 4.8-5.1 1.8 0 3 1 3.6 2.1.6-1.1 1.8-2.1 3.6-2.1 2.5 0 4.8 2.1 4.8 5.1 0 5.9-8.4 11.1-8.4 11.1z" fill="#10163A"/></svg>Apple Health</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="#10163A"><rect x="2" y="2" width="9" height="9" rx="3"/><rect x="13" y="2" width="9" height="9" rx="4.5"/><rect x="2" y="13" width="9" height="9" rx="4.5"/><rect x="13" y="13" width="9" height="9" rx="3"/></svg>Health Connect</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="#10163A" stroke-width="3.6"/></svg>ŌURA</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 4 21.5 20h-19z" fill="#10163A"/></svg>GARMIN</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="#10163A"><circle cx="12" cy="3.2" r="1.7"/><circle cx="12" cy="8" r="2"/><circle cx="12" cy="12" r="2.3"/><circle cx="12" cy="16" r="2"/><circle cx="12" cy="20.8" r="1.7"/><circle cx="17.2" cy="8" r="1.7"/><circle cx="17.2" cy="12" r="2"/><circle cx="17.2" cy="16" r="1.7"/><circle cx="6.8" cy="12" r="1.7"/></svg>fitbit</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="panel-head"><b>This week · Anita</b><span>4 classes taken</span></div>
+      <div class="rings">
+        <div class="ring">
+          <svg width="118" height="118"><circle cx="59" cy="59" r="50" fill="none" stroke="#DBE6DE" stroke-width="11"/><circle cx="59" cy="59" r="50" fill="none" stroke="#2A513F" stroke-width="11" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="91" class="ring-anim"/></svg>
+          <div class="val"><div><b>71</b><small>SLEEP SCORE</small></div></div>
+        </div>
+        <div class="metric-rows">
+          <div class="metric-row"><small>Sleep duration</small><b>7.6h <span class="delta">▲ +1.4h</span></b></div>
+          <div class="metric-row"><small>Resting heart rate</small><b>64 bpm <span class="delta down">▼ −6</span></b></div>
+          <div class="metric-row"><small>Stress (HRV)</small><b>47 ms <span class="delta">▲ +9</span></b></div>
+        </div>
+      </div>
+      <div class="spark">
+        <div class="spark-top"><b>Sleep score — 14 days</b><span>38 → 71</span></div>
+        <svg viewBox="0 0 400 80" width="100%" height="72" preserveAspectRatio="none" style="margin-top:10px">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A513F" stop-opacity=".25"/><stop offset="1" stop-color="#2A513F" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0,62 C40,60 60,66 90,58 C120,50 140,54 170,44 C200,34 230,40 260,28 C290,20 320,24 350,14 L400,10 L400,80 L0,80 Z" fill="url(#g1)"/>
+          <path d="M0,62 C40,60 60,66 90,58 C120,50 140,54 170,44 C200,34 230,40 260,28 C290,20 320,24 350,14 L400,10" fill="none" stroke="#2A513F" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="400" cy="10" r="5" fill="#2A513F"/>
+        </svg>
+      </div>
+      <div class="suggest">
+        <p><b>For you tonight:</b> short sleep last night — try Pranayama &amp; Gentle Flow, 30 min live at 9 PM.</p>
+        <button>Book it</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="world" id="instructors">
+  <div class="wrap world-grid">
+    <div class="reveal">
+      <p class="eyebrow">Meet your coaches</p>
+      <h2>One membership. Teachers from everywhere.</h2>
+      <p class="lead">Ekam coaches teach live from their home cities — bringing lineages, languages and training cultures you won’t find at the gym down the street. Morning flow with Mumbai, evening boxing with Buenos Aires.</p>
+      <div class="flag-row">
+        <span>🇮🇳 Mumbai</span><span>🇵🇹 Lisbon</span><span>🇦🇷 Buenos Aires</span><span>🇭🇰 Hong Kong</span><span>🇲🇽 Mexico City</span><span>🇨🇦 Toronto</span><span>+ 6 more</span>
+      </div>
+      <a class="btn btn-citron" style="margin-top:34px" href="#">Meet all 40+ instructors</a>
+    </div>
+    <div class="tutor-grid reveal">
+      <figure class="tutor"><img src="assets/khushboo-bhatia.png" style="object-position:22% 38%" alt=""><figcaption>Khushboo Bhatia<small>Hatha &amp; Iyengar · Mumbai 🇮🇳</small></figcaption></figure>
+      <figure class="tutor"><img src="assets/bruno-ballestrero.jpg" alt=""><figcaption>Bruno Ballestrero<small>Boxing &amp; HIIT · Buenos Aires 🇦🇷</small></figcaption></figure>
+      <figure class="tutor"><img src="assets/serafina-sanches.png" style="object-position:center 18%" alt=""><figcaption>Serafina Sanches<small>Pilates &amp; Strength · Lisbon 🇵🇹</small></figcaption></figure>
+      <figure class="tutor"><img src="assets/vivian-yeung.jpg" alt=""><figcaption>Vivian Yeung<small>Tai Chi &amp; Mobility · Hong Kong 🇭🇰</small></figcaption></figure>
+      <figure class="tutor"><img src="assets/simran-dodeja.png" style="object-position:center 18%" alt=""><figcaption>Simran Dodeja<small>Sound Healing · New Delhi 🇮🇳</small></figcaption></figure>
+      <figure class="tutor"><img src="assets/laura-moran.jpg" alt=""><figcaption>Laura Moran<small>Vinyasa · Mexico City 🇲🇽</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin:0 auto">
+      <p class="eyebrow">Simple pricing</p>
+      <h2>Every plan starts with 14 days free.</h2>
+      <p>No credit card to start. Cancel anytime. Just bring a mat.</p>
+    </div>
+    <div class="price-grid">
+      <article class="price-card reveal">
+        <h3>Starter</h3>
+        <div class="amount"><b>$15</b> <span>/ month</span></div>
+        <p class="price-note">For building the habit</p>
+        <div class="price-feats">
+          <span>6 live classes per month</span>
+          <span>All 25 disciplines</span>
+          <span>Wellbeing dashboard included</span>
+          <span>Class recordings for 7 days</span>
+        </div>
+        <a class="btn btn-ghost" href="#">Start free</a>
+      </article>
+      <article class="price-card hot reveal" style="transition-delay:.08s">
+        <span class="hot-tag">MOST POPULAR</span>
+        <h3>Unlimited</h3>
+        <div class="amount"><b>$29</b> <span>/ month</span></div>
+        <p class="price-note">Unlimited live classes</p>
+        <div class="price-feats">
+          <span>Unlimited live classes, every discipline</span>
+          <span>Instructors from 12 countries</span>
+          <span>Device sync + personal suggestions</span>
+          <span>Priority booking for small groups</span>
+          <span>Bring a friend once a month</span>
+        </div>
+        <a class="btn btn-citron" href="#">Start 14 days free</a>
+      </article>
+      <article class="price-card reveal" style="transition-delay:.16s">
+        <h3>Annual</h3>
+        <div class="amount"><b>$19</b> <span>/ month, billed yearly</span></div>
+        <p class="price-note">Save 34% — $228/year</p>
+        <div class="price-feats">
+          <span>Everything in Unlimited</span>
+          <span>2 months free</span>
+          <span>Quarterly 1:1 goal check-in</span>
+          <span>Early access to new disciplines</span>
+        </div>
+        <a class="btn btn-ghost" href="#">Start free</a>
+      </article>
+    </div>
+    <p class="price-foot">Prices shown for exploration. ★ 5.0 on the App Store · Encrypted health data · Never sold · Disconnect anytime</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="social">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin:0 auto">
+      <p class="eyebrow">From our members</p>
+      <h2>Full calendars. Feeling better.</h2>
+    </div>
+    <div class="quote-grid">
+      <article class="quote-card reveal">
+        <span class="stars">★★★★★</span>
+        <blockquote>“The sleep meditation was amazing — I felt so relaxed I slept off halfway through class. Best night in months.”</blockquote>
+        <div class="q-metric"><small>SLEEP SCORE</small><b><em>38 →</em> <strong>71</strong></b></div>
+        <p class="q-who"><b>Jag G.</b> · Tuesday sleep meditation</p>
+      </article>
+      <article class="quote-card reveal" style="transition-delay:.1s">
+        <span class="stars">★★★★★</span>
+        <blockquote>“Five days of evening yoga and I’m sleeping deeper than I have in months.”</blockquote>
+        <div class="q-metric"><small>SLEEP</small><b><em>6.2h →</em> <strong>7.6h</strong></b></div>
+        <p class="q-who"><b>Priya</b> · Working mom of two</p>
+      </article>
+      <article class="quote-card reveal" style="transition-delay:.2s">
+        <span class="stars">★★★★★</span>
+        <blockquote>“The 6 AM meditation nudges changed my whole day. I show up because Simran expects me.”</blockquote>
+        <div class="q-metric"><small>RESTING HR</small><b><em>70 →</em> <strong>64</strong></b></div>
+        <p class="q-who"><b>Maya</b> · Morning meditation</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <h2 class="reveal">Questions, answered.</h2>
+  <div class="faq-list reveal">
+    <details><summary>I only have 30 minutes. Is that enough?</summary><p>Yes. Most Ekam classes are designed to fit into 30 to 45 minutes, with no commute or setup beyond joining from home.</p></details>
+    <details><summary>Do I need a wearable?</summary><p>No. You can browse and book without one. Apple Health and Health Connect are optional and only help personalize suggestions.</p></details>
+    <details><summary>Can the coach see me? Do I have to be on camera?</summary><p>Your camera is your choice. Turning it on lets the instructor offer more useful form guidance during class.</p></details>
+    <details><summary>What happens after my 14 free days?</summary><p>The free period ends. Choose a membership if you want to keep booking — if you don’t, you’re never billed.</p></details>
+    <details><summary>What if I miss a class I booked?</summary><p>You can manage upcoming bookings from your account. The cancellation terms shown when you book apply to that class.</p></details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>Your mat is already home.<br>So are we.</h2>
+  <p>14 days free · No credit card · First class could be tonight</p>
+  <a class="btn btn-citron" href="#">Get started free</a>
+</section>
+
+<footer>Ekam — homepage redesign exploration 1 of 3 · “Marketplace Energy” (ClassPass direction)</footer>
+
+<script>
+/* flip-word hero */
+const flip=document.getElementById('flip');let fi=0;const total=flip.children.length;
+setInterval(()=>{fi++;flip.style.transform=`translateY(-${fi*(100/total)}%)`;
+  if(fi===total-1){setTimeout(()=>{flip.style.transition='none';flip.style.transform='translateY(0)';fi=0;requestAnimationFrame(()=>requestAnimationFrame(()=>flip.style.transition=''))},580)}
+},2200);
+/* category filter for the weekly grid */
+document.querySelectorAll('.cat-chips button').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelector('.cat-chips .on')?.classList.remove('on');btn.classList.add('on');
+  const f=btn.dataset.f;
+  document.querySelectorAll('.wk .cell').forEach(c=>c.classList.toggle('dim',!!f&&c.dataset.cat!==f));
+}));
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

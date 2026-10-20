@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekam — Homepage Redesign Explorations</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hanken Grotesk',sans-serif;background:#F4F1EA;color:#1A2238;min-height:100svh;display:grid;place-items:center;padding:48px 24px;-webkit-font-smoothing:antialiased}
+.hub{max-width:1060px;width:100%}
+h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(30px,4vw,46px);letter-spacing:-.01em}
+h1 em{font-style:italic;color:#C96F3B}
+.sub{margin-top:12px;color:rgba(26,34,56,.62);font-size:15.5px;max-width:62ch;line-height:1.6}
+.cards{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+a.card{display:flex;flex-direction:column;background:#fff;border-radius:20px;padding:30px;text-decoration:none;color:inherit;border:1.5px solid rgba(26,34,56,.1);transition:transform .2s,box-shadow .2s;min-height:280px}
+a.card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -22px rgba(26,34,56,.3)}
+.swatches{display:flex;gap:6px}
+.swatches i{width:26px;height:26px;border-radius:8px}
+.card h2{margin-top:20px;font-family:'Fraunces',serif;font-weight:500;font-size:23px}
+.card p{margin-top:8px;font-size:14px;line-height:1.55;color:rgba(26,34,56,.62);flex:1}
+.card small{margin-top:18px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#C96F3B}
+.open{margin-top:10px;font-weight:700;font-size:14px}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hub">
+  <h1>Ekam homepage — <em>two explorations</em></h1>
+  <p class="sub">Each direction re-imagines color, type, spacing and content for the same audience — busy women keeping an at-home exercise habit — and leads with the three pillars: live sessions, worldwide instructors, and the wellbeing dashboard.</p>
+  <div class="cards">
+    <a class="card" href="explore-1.html">
+      <span class="swatches"><i style="background:#2A513F"></i><i style="background:#E3FE54"></i><i style="background:#EDF2EE"></i><i style="background:#10163A"></i></span>
+      <h2>01 · Marketplace Energy</h2>
+      <p>ClassPass direction — flip-word hero with video + mini schedule/dashboard cards, weekly timetable with live filter, Ekam forest + citron, Bricolage Grotesque.</p>
+      <small>Bright · Playful · Bookable</small>
+      <span class="open">Open exploration →</span>
+    </a>
+    <a class="card" href="explore-2.html">
+      <span class="swatches"><i style="background:#0D0C0B"></i><i style="background:#2A513F"></i><i style="background:#7FB89B"></i><i style="background:#FAF6EF"></i></span>
+      <h2>02 · Cinematic Power</h2>
+      <p>Peloton direction — 3-up hero (video + coaches + dashboard), bold expanded Archivo caps, coach rail, Ekam forest + sage on black/bone.</p>
+      <small>Cinematic · Bold · Motivating</small>
+      <span class="open">Open exploration →</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>

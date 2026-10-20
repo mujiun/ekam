@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekam — Exploration 2 · Cinematic Power (Peloton direction)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0D0C0B;
+  --coal:#171512;
+  --bone:#FAF6EF;
+  --bone-dim:#F1EADF;
+  --ember:#2A513F;
+  --ember-deep:#1F3E30;
+  --gold:#9CBFA7;
+  --ember-lite:#7FB89B;
+  --white-70:rgba(250,246,239,.7);
+  --white-45:rgba(250,246,239,.45);
+  --ink-60:rgba(13,12,11,.62);
+  --ink-30:rgba(13,12,11,.3);
+  --sans:'Archivo',sans-serif;
+  --maxw:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bone);color:var(--black);-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.display{font-stretch:118%;font-weight:850;text-transform:uppercase;letter-spacing:-.01em;line-height:.94}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--ember)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:17px 34px;cursor:pointer;border:none;transition:all .18s ease}
+.btn-ember{background:var(--ember);color:var(--bone)}
+.btn-ember:hover{background:var(--ember-deep)}
+.btn-line{background:transparent;color:var(--bone);box-shadow:inset 0 0 0 2px rgba(250,246,239,.5)}
+.btn-line:hover{background:var(--bone);color:var(--black)}
+.btn-dark-line{background:transparent;color:var(--black);box-shadow:inset 0 0 0 2px rgba(13,12,11,.35)}
+.btn-dark-line:hover{background:var(--black);color:var(--bone)}
+
+/* ───────── header ───────── */
+header{position:fixed;inset-inline:0;top:0;z-index:90;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.solid{background:rgba(13,12,11,.92);backdrop-filter:blur(12px);border-color:rgba(250,246,239,.12)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;color:var(--bone)}
+.logo{font-stretch:118%;font-weight:900;font-size:26px;text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.logo img{height:28px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:34px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white-70)}
+.nav-links a:hover{color:var(--bone)}
+.nav .btn{padding:12px 24px;font-size:12px}
+
+/* ───────── HERO — 3-up ───────── */
+.hero{background:var(--black);color:var(--bone);padding:118px 0 0;position:relative}
+.hero-top{padding-bottom:30px}
+.hero-top .kicker{color:var(--ember-lite)}
+.hero h1{font-size:clamp(28px,3.3vw,46px);max-width:22ch;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--ember-lite)}
+.hero .lede{margin-top:12px;max-width:560px;font-size:15px;line-height:1.55;color:var(--white-70);font-weight:500}
+.hero-ctas{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.hero-proof{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--white-45);display:grid;gap:9px;text-align:right}
+.hero-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 10px 10px}
+.trio{position:relative;height:min(60vh,600px);overflow:hidden;display:block}
+.trio video,.trio>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;filter:saturate(.95)}
+.trio:hover video,.trio:hover>img{transform:scale(1.05)}
+.trio::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,12,11,.88),rgba(13,12,11,.1) 52%)}
+.trio-body{position:absolute;z-index:2;inset-inline:0;bottom:0;padding:24px 22px}
+.trio-body .t-kick{font-size:10.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--ember-lite)}
+.trio-body h2{font-stretch:118%;font-weight:850;text-transform:uppercase;font-size:clamp(20px,1.9vw,27px);line-height:1.02;margin-top:9px}
+.trio-body p{margin-top:8px;font-size:13px;line-height:1.5;color:var(--white-70);font-weight:500;max-width:30ch}
+.trio-tag{position:absolute;z-index:2;top:16px;left:16px;display:flex;gap:8px;align-items:center;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(13,12,11,.55);border:1px solid rgba(250,246,239,.3);padding:9px 14px;backdrop-filter:blur(6px)}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--ember-lite);animation:pls 1.5s infinite}
+@keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(127,184,155,.6)}60%{box-shadow:0 0 0 8px rgba(127,184,155,0)}}
+
+/* ───────── ticker ───────── */
+.ticker{background:var(--ember);color:var(--bone);overflow:hidden;padding:15px 0}
+.ticker-inner{display:flex;gap:56px;width:max-content;animation:tick 30s linear infinite;font-size:13.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker-inner span::before{content:"✦";margin-right:56px;color:rgba(250,246,239,.6)}
+
+/* ───────── numbers ───────── */
+.numbers{padding:110px 0 90px}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;border-top:3px solid var(--black);padding-top:44px}
+.numbers h2{font-size:clamp(26px,2.8vw,38px);margin-bottom:48px;max-width:20ch}
+.num b{font-stretch:118%;font-weight:900;font-size:clamp(44px,4.6vw,68px);letter-spacing:-.02em;display:block;line-height:1}
+.num b i{font-style:normal;color:var(--ember)}
+.num small{display:block;margin-top:10px;font-size:13.5px;font-weight:600;color:var(--ink-60);max-width:20ch;line-height:1.5}
+
+/* ───────── disciplines grid ───────── */
+.disciplines{background:var(--black);color:var(--bone);padding:110px 0}
+.disc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:52px}
+.disc-head h2{font-size:clamp(28px,3.2vw,44px)}
+.disc-head p{max-width:380px;font-size:15px;color:var(--white-70);line-height:1.6;font-weight:500}
+.disc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.disc{position:relative;aspect-ratio:3/3.6;overflow:hidden;cursor:pointer}
+.disc img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:saturate(.92)}
+.disc:hover img{transform:scale(1.07)}
+.disc::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,12,11,.85),transparent 55%)}
+.disc span{position:absolute;z-index:2;left:18px;bottom:16px;font-stretch:118%;font-weight:850;text-transform:uppercase;font-size:21px;letter-spacing:.01em}
+.disc small{position:absolute;z-index:2;left:18px;bottom:46px;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ember-lite);text-transform:uppercase;opacity:0;translate:0 6px;transition:all .3s}
+.disc:hover small{opacity:1;translate:0 0}
+
+/* ───────── instructor spotlight ───────── */
+.spotlight{padding:120px 0;overflow:hidden}
+.spot-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.spot-head h2{font-size:clamp(28px,3.2vw,44px);max-width:14ch}
+.spot-nav{display:flex;gap:10px}
+.spot-btn{width:54px;height:54px;border:2px solid var(--black);background:transparent;font-size:19px;cursor:pointer;transition:all .15s}
+.spot-btn:hover{background:var(--ember);border-color:var(--ember);color:var(--bone)}
+.spot-track{margin-top:54px;display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
+.spot-track::-webkit-scrollbar{display:none}
+.coach{flex:0 0 340px;scroll-snap-align:start}
+.coach-media{position:relative;aspect-ratio:3/3.8;overflow:hidden;background:var(--coal)}
+.coach-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:saturate(.95)}
+.coach:hover .coach-media img{transform:scale(1.05)}
+.coach-flag{position:absolute;top:14px;left:14px;background:var(--bone);color:var(--black);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:8px 13px}
+.coach-live{position:absolute;bottom:14px;left:14px;background:var(--ember);color:var(--bone);font-size:11px;font-weight:800;letter-spacing:.1em;padding:8px 13px;text-transform:uppercase}
+.coach h3{margin-top:18px;font-stretch:118%;font-weight:850;text-transform:uppercase;font-size:24px}
+.coach p{margin-top:5px;font-size:13.5px;font-weight:600;color:var(--ink-60)}
+.coach-quote{margin-top:10px;font-size:14px;line-height:1.55;color:var(--ink-60);font-style:italic;border-left:3px solid var(--ember);padding-left:12px}
+
+/* ───────── metrics / dashboard ───────── */
+.metrics{background:var(--coal);color:var(--bone);padding:120px 0;position:relative;overflow:hidden}
+.metrics::before{content:"TRACK";position:absolute;font-stretch:118%;font-weight:900;font-size:26vw;letter-spacing:-.03em;color:rgba(250,246,239,.03);top:-4vw;left:-1vw;pointer-events:none}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}
+.metrics h2{font-size:clamp(27px,3vw,42px)}
+.metrics h2 em{font-style:normal;color:var(--gold)}
+.metrics .lede{margin-top:22px;font-size:16px;line-height:1.65;color:var(--white-70);max-width:480px;font-weight:500}
+.m-list{margin-top:40px;display:grid;gap:0;border-top:1px solid rgba(250,246,239,.15)}
+.m-item{display:flex;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(250,246,239,.15)}
+.m-item b{font-stretch:118%;font-weight:900;font-size:34px;color:var(--gold);min-width:110px}
+.m-item div{font-size:14px;color:var(--white-70);line-height:1.5;font-weight:500}
+.m-item div strong{display:block;color:var(--bone);font-size:15px;margin-bottom:2px}
+.devices{margin-top:34px;display:flex;gap:9px;flex-wrap:wrap}
+.devices span{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(250,246,239,.3);padding:9px 15px;color:var(--white-70)}
+/* dark panel */
+.dark-panel{background:#201D19;border:1px solid rgba(250,246,239,.12);padding:30px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.dp-head{display:flex;justify-content:space-between;align-items:center}
+.dp-head b{font-stretch:118%;text-transform:uppercase;font-size:16px;font-weight:850;letter-spacing:.04em}
+.dp-head span{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.big-metric{margin-top:30px;display:flex;align-items:baseline;gap:18px}
+.big-metric b{font-stretch:118%;font-weight:900;font-size:96px;line-height:1;color:var(--gold)}
+.big-metric .was{font-size:30px;font-weight:800;color:rgba(250,246,239,.3);text-decoration:line-through}
+.big-metric small{font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--white-45);text-transform:uppercase}
+.bars{margin-top:30px;display:flex;align-items:flex-end;gap:7px;height:120px}
+.bars i{flex:1;background:rgba(250,246,239,.14);transition:height 1s cubic-bezier(.2,.8,.2,1)}
+.bars i.hot{background:var(--gold)}
+.dp-rows{margin-top:28px;display:grid;gap:1px;background:rgba(250,246,239,.1)}
+.dp-row{background:#201D19;display:flex;justify-content:space-between;padding:15px 4px;font-size:13.5px}
+.dp-row small{color:var(--white-45);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px}
+.dp-row b{font-weight:800}
+.dp-row b i{font-style:normal;color:#6FD29A;font-size:12px;margin-left:8px}
+
+/* ───────── quote band ───────── */
+.quote-band{padding:130px 0;text-align:center}
+.quote-band blockquote{font-stretch:112%;font-weight:800;text-transform:uppercase;font-size:clamp(21px,2.6vw,34px);line-height:1.14;max-width:24ch;margin:0 auto}
+.quote-band blockquote em{font-style:normal;color:var(--ember)}
+.quote-band figcaption{margin-top:28px;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60)}
+.stars-row{font-size:18px;letter-spacing:6px;color:var(--ember);margin-bottom:26px}
+
+/* ───────── membership ───────── */
+.membership{background:var(--bone-dim);padding:110px 0}
+.mem-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.mem-head h2{font-size:clamp(28px,3.2vw,44px)}
+.mem-head p{margin-top:16px;font-size:15.5px;color:var(--ink-60);font-weight:500}
+.mem-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:960px;margin:0 auto}
+.mem-card{background:var(--bone);border:2px solid var(--black);padding:42px;display:flex;flex-direction:column;position:relative}
+.mem-card.dark{background:var(--black);color:var(--bone)}
+.mem-tag{position:absolute;top:-15px;left:42px;background:var(--ember);color:var(--bone);font-size:11px;font-weight:800;letter-spacing:.16em;padding:8px 16px;text-transform:uppercase}
+.mem-card h3{font-stretch:118%;font-weight:850;text-transform:uppercase;font-size:26px}
+.mem-price{margin-top:26px;display:flex;align-items:baseline;gap:10px}
+.mem-price b{font-stretch:118%;font-weight:900;font-size:64px;letter-spacing:-.02em}
+.mem-price span{font-size:14px;font-weight:600;color:var(--ink-60)}
+.mem-card.dark .mem-price span{color:var(--white-45)}
+.mem-feats{margin-top:28px;display:grid;gap:13px;font-size:14.5px;font-weight:500;flex:1}
+.mem-feats span{display:flex;gap:12px}
+.mem-feats span::before{content:"→";font-weight:800;color:var(--ember)}
+.mem-card .btn{margin-top:34px}
+.mem-foot{text-align:center;margin-top:30px;font-size:13px;font-weight:600;color:var(--ink-60)}
+
+/* ───────── final ───────── */
+.final{position:relative;min-height:72svh;display:flex;align-items:center;background:var(--black);color:var(--bone);overflow:hidden}
+.final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.final::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(13,12,11,.85),rgba(13,12,11,.2))}
+.final .wrap{position:relative;z-index:2;padding-block:90px}
+.final h2{font-size:clamp(32px,4.2vw,56px);max-width:13ch}
+.final p{margin-top:20px;font-size:16px;color:var(--white-70);font-weight:500}
+.final .btn{margin-top:36px}
+footer{background:var(--black);color:var(--white-45);text-align:center;padding:34px;font-size:12.5px;font-weight:600;letter-spacing:.06em;border-top:1px solid rgba(250,246,239,.12)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:1020px){
+  .nav-links{display:none}
+  .hero-trio{grid-template-columns:1fr}
+  .trio{height:44vh}
+  .hero-row{flex-direction:column;align-items:flex-start}
+  .hero-proof{text-align:left}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
+  .disc-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics-grid,.mem-grid{grid-template-columns:1fr}
+  .slide-body{padding-bottom:130px}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#"><img src="assets/ekam-logo.png" alt="">Ekam</a>
+    <nav class="nav-links">
+      <a href="#disciplines">Disciplines</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#metrics">Results</a>
+      <a href="#membership">Membership</a>
+    </nav>
+    <a class="btn btn-ember" href="#membership">14 Days Free</a>
+  </div>
+</header>
+
+<!-- HERO — 3 features at once -->
+<section class="hero" id="hero">
+  <div class="wrap hero-top">
+    <div class="hero-row">
+      <div>
+        <p class="kicker">Live classes · Global coaches · Real results</p>
+        <h1 class="display">Sweat. Breathe. With <em>live</em> people.</h1>
+        <p class="lede">Live yoga, meditation &amp; boxing — coached live, from home.</p>
+        <div class="hero-ctas"><a class="btn btn-ember" href="#membership">Start 14 days free</a><a class="btn btn-line" href="#disciplines">Today’s schedule</a></div>
+      </div>
+      <div class="hero-proof"><span>★ 5.0 App Store</span><span>250+ live classes / mo</span><span>No credit card</span></div>
+    </div>
+  </div>
+  <div class="hero-trio">
+    <a class="trio" href="#disciplines">
+      <video src="assets/yoga-meditation-reel.mp4" autoplay muted loop playsinline poster="assets/moment-yoga.jpg"></video>
+      <span class="trio-tag"><span class="pulse"></span>Live now</span>
+      <div class="trio-body"><p class="t-kick">01 · Live sessions</p><h2>Yoga, meditation &amp; boxing</h2><p>Real coaches, small groups, someone expecting you.</p></div>
+    </a>
+    <a class="trio" href="#coaches">
+      <img src="assets/hero-teach.jpg" alt="">
+      <div class="trio-body"><p class="t-kick">02 · Global coaches</p><h2>Teachers from 12 countries</h2><p>Mumbai to Lisbon to Buenos Aires — one membership.</p></div>
+    </a>
+    <a class="trio" href="#metrics">
+      <img src="assets/wearables-health.jpg" style="object-position:56% 57%;transform:scale(2.4);transform-origin:56% 57%" alt="">
+      <div class="trio-body"><p class="t-kick">03 · Your dashboard</p><h2>Feel it work. See it work.</h2><p>Sleep, heart rate and stress — tied to every class.</p></div>
+    </a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">
+  <span>250+ live classes monthly</span><span>Yoga</span><span>Boxing</span><span>Meditation</span><span>Pilates</span><span>Breathwork</span><span>Sound Bath</span><span>★ 5.0 App Store</span><span>14 days free</span>
+  <span>250+ live classes monthly</span><span>Yoga</span><span>Boxing</span><span>Meditation</span><span>Pilates</span><span>Breathwork</span><span>Sound Bath</span><span>★ 5.0 App Store</span><span>14 days free</span>
+</div></div>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="wrap">
+    <h2 class="display reveal">Built for the hour you don’t have.</h2>
+    <div class="numbers-grid">
+      <div class="num reveal"><b>250<i>+</i></b><small>live classes on the calendar every month</small></div>
+      <div class="num reveal" style="transition-delay:.08s"><b>25</b><small>disciplines — strength to sound baths</small></div>
+      <div class="num reveal" style="transition-delay:.16s"><b>12</b><small>countries our coaches teach live from</small></div>
+      <div class="num reveal" style="transition-delay:.24s"><b>30<i>–</i>45</b><small>minutes per class. Zero commute.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCIPLINES -->
+<section class="disciplines" id="disciplines">
+  <div class="wrap">
+    <div class="disc-head reveal">
+      <h2 class="display">Every way<br>to move.</h2>
+      <p>One membership covers body, mind and sleep — switch between disciplines as your week demands. All live, all coached.</p>
+    </div>
+    <div class="disc-grid">
+      <a class="disc reveal" href="#"><img src="assets/class-yoga.jpg" alt=""><small>38 classes / week</small><span>Yoga</span></a>
+      <a class="disc reveal" style="transition-delay:.06s" href="#"><img src="assets/class-strength.jpg" alt=""><small>22 classes / week</small><span>Boxing + HIIT</span></a>
+      <a class="disc reveal" style="transition-delay:.12s" href="#"><img src="assets/class-meditation.jpg" alt=""><small>26 classes / week</small><span>Meditation</span></a>
+      <a class="disc reveal" style="transition-delay:.18s" href="#"><img src="assets/wenyoga-aerial-pilates.jpg" alt=""><small>18 classes / week</small><span>Pilates</span></a>
+      <a class="disc reveal" href="#"><img src="assets/class-breathwork.jpg" alt=""><small>14 classes / week</small><span>Breathwork</span></a>
+      <a class="disc reveal" style="transition-delay:.06s" href="#"><img src="assets/class-soundbath.jpg" alt=""><small>10 classes / week</small><span>Sound Bath</span></a>
+      <a class="disc reveal" style="transition-delay:.12s" href="#"><img src="assets/wenyoga-prenatal.png" alt=""><small>12 classes / week</small><span>Pre + Postnatal</span></a>
+      <a class="disc reveal" style="transition-delay:.18s" href="#"><img src="assets/focus-sleep.jpg" alt=""><small>8 classes / week</small><span>Sleep</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COACHES -->
+<section class="spotlight" id="coaches">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <div>
+        <p class="kicker">The Ekam roster</p>
+        <h2 class="display" style="margin-top:14px">Coaches worth showing up for.</h2>
+      </div>
+      <div class="spot-nav">
+        <button class="spot-btn" onclick="spot(-1)" aria-label="Previous">←</button>
+        <button class="spot-btn" onclick="spot(1)" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="spot-track" id="spotTrack">
+      <article class="coach reveal">
+        <div class="coach-media"><img src="assets/khushboo-bhatia.png" style="object-position:22% 38%" alt=""><span class="coach-flag">Mumbai 🇮🇳</span><span class="coach-live">Teaches 6 AM IST</span></div>
+        <h3>Khushboo Bhatia</h3><p>Hatha · Iyengar · Alignment</p>
+        <p class="coach-quote">“Alignment first. Strength follows. Always.”</p>
+      </article>
+      <article class="coach reveal" style="transition-delay:.07s">
+        <div class="coach-media"><img src="assets/bruno-ballestrero.jpg" alt=""><span class="coach-flag">Buenos Aires 🇦🇷</span><span class="coach-live">Teaches lunch blocks</span></div>
+        <h3>Bruno Ballestrero</h3><p>Boxing · HIIT · Conditioning</p>
+        <p class="coach-quote">“Thirty minutes. All in. Then back to your day.”</p>
+      </article>
+      <article class="coach reveal" style="transition-delay:.14s">
+        <div class="coach-media"><img src="assets/serafina-sanches.png" style="object-position:center 18%" alt=""><span class="coach-flag">Lisbon 🇵🇹</span><span class="coach-live">Teaches evenings CET</span></div>
+        <h3>Serafina Sanches</h3><p>Pilates · Yoga · Strength</p>
+        <p class="coach-quote">“Movement should be something you want, not force.”</p>
+      </article>
+      <article class="coach reveal" style="transition-delay:.21s">
+        <div class="coach-media"><img src="assets/simran-dodeja.png" style="object-position:center 18%" alt=""><span class="coach-flag">New Delhi 🇮🇳</span><span class="coach-live">Teaches sleep block</span></div>
+        <h3>Simran Dodeja</h3><p>Mindfulness · Sound Healing</p>
+        <p class="coach-quote">“The night class is where your tomorrow begins.”</p>
+      </article>
+      <article class="coach reveal" style="transition-delay:.28s">
+        <div class="coach-media"><img src="assets/saraswati-srividya.png" style="object-position:center 22%" alt=""><span class="coach-flag">Bengaluru 🇮🇳</span><span class="coach-live">Teaches mornings</span></div>
+        <h3>Saraswati Srividya</h3><p>Prenatal / Postnatal · Vinyasa</p>
+        <p class="coach-quote">“Every body, every stage. The practice adapts to you.”</p>
+      </article>
+      <article class="coach reveal" style="transition-delay:.35s">
+        <div class="coach-media"><img src="assets/vivian-yeung.jpg" alt=""><span class="coach-flag">Hong Kong 🇭🇰</span><span class="coach-live">Teaches early AM</span></div>
+        <h3>Vivian Yeung</h3><p>Tai Chi · Mobility</p>
+        <p class="coach-quote">“Slow is not weak. Slow is control.”</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS / DASHBOARD -->
+<section class="metrics" id="metrics">
+  <div class="wrap metrics-grid">
+    <div class="reveal">
+      <p class="kicker" style="color:var(--gold)">Your dashboard</p>
+      <h2 class="display" style="margin-top:16px">Your body keeps the <em>score</em>. Now you can read it.</h2>
+      <p class="lede">Connect your watch, ring or phone. Ekam ties every class to what your body does next — sleep, recovery, stress — and suggests tonight’s class accordingly. A wearable is never required.</p>
+      <div class="m-list">
+        <div class="m-item"><b>38→71</b><div><strong>One member’s sleep score</strong>The night after a live class. Individual results vary.</div></div>
+        <div class="m-item"><b>+9ms</b><div><strong>HRV after one week</strong>Breathwork + strength, measured on her own Oura ring.</div></div>
+        <div class="m-item"><b>−6bpm</b><div><strong>Resting heart rate</strong>Four days of morning meditation with Simran.</div></div>
+      </div>
+      <div class="devices"><span>Apple Watch</span><span>Oura</span><span>Garmin</span><span>Fitbit</span><span>Health Connect</span></div>
+    </div>
+    <div class="dark-panel reveal" style="transition-delay:.12s">
+      <div class="dp-head"><b>Tonight’s readout</b><span>Synced · Apple Watch</span></div>
+      <div class="big-metric"><b id="bigNum">71</b><span class="was">38</span><small>Sleep<br>score</small></div>
+      <div class="bars" id="bars">
+        <i style="height:28%"></i><i style="height:34%"></i><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:52%"></i><i style="height:48%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:74%"></i><i style="height:80%"></i><i style="height:86%"></i><i class="hot" style="height:94%"></i>
+      </div>
+      <div class="dp-rows">
+        <div class="dp-row"><small>Sleep duration</small><b>7.6h<i>▲ +1.4h</i></b></div>
+        <div class="dp-row"><small>Resting HR</small><b>64 bpm<i>▼ −6</i></b></div>
+        <div class="dp-row"><small>Suggested tonight</small><b>Breathwork · 9 PM live</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-band">
+  <div class="wrap reveal">
+    <div class="stars-row">★★★★★</div>
+    <blockquote>“I felt so relaxed I <em>slept off halfway</em> through class. Best night in months.”</blockquote>
+    <figcaption>Jag G. — Tuesday Sleep Meditation · ★ 5.0 on the App Store</figcaption>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership" id="membership">
+  <div class="wrap">
+    <div class="mem-head reveal">
+      <p class="kicker">Membership</p>
+      <h2 class="display" style="margin-top:14px">One price. Everything live.</h2>
+      <p>Every membership starts with 14 days free. No credit card, cancel anytime.</p>
+    </div>
+    <div class="mem-grid">
+      <article class="mem-card reveal">
+        <h3>Monthly</h3>
+        <div class="mem-price"><b>$29</b><span>/ month</span></div>
+        <div class="mem-feats">
+          <span>Unlimited live classes — all 25 disciplines</span>
+          <span>Coaches from 12 countries, every time zone</span>
+          <span>Wellbeing dashboard + device sync</span>
+          <span>Small groups, priority booking</span>
+        </div>
+        <a class="btn btn-dark-line" href="#">Start 14 days free</a>
+      </article>
+      <article class="mem-card dark reveal" style="transition-delay:.1s">
+        <span class="mem-tag">Save 34%</span>
+        <h3>Annual</h3>
+        <div class="mem-price"><b>$19</b><span>/ month · billed $228/yr</span></div>
+        <div class="mem-feats">
+          <span>Everything in Monthly</span>
+          <span>2 months free every year</span>
+          <span>Quarterly 1:1 goal check-in with a coach</span>
+          <span>Bring a friend to class, once a month</span>
+        </div>
+        <a class="btn btn-ember" href="#">Start 14 days free</a>
+      </article>
+    </div>
+    <p class="mem-foot">Prices shown for exploration · Health data encrypted, never sold, disconnect anytime</p>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <img src="assets/moment-strength.jpg" alt="">
+  <div class="wrap">
+    <h2 class="display">Tonight, 9 PM. We saved you a spot.</h2>
+    <p>14 days free · No credit card · Just bring a mat</p>
+    <a class="btn btn-ember" href="#">Claim your free 14 days</a>
+  </div>
+</section>
+
+<footer>EKAM — HOMEPAGE REDESIGN EXPLORATION 2 OF 3 · “CINEMATIC POWER” (PELOTON DIRECTION)</footer>
+
+<script>
+/* header solid on scroll */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>40),{passive:true});
+/* coach carousel */
+const st=document.getElementById('spotTrack');
+function spot(d){st.scrollBy({left:d*(340+22)*2,behavior:'smooth'})}
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* grow bars when visible */
+const bars=document.getElementById('bars');
+const heights=[...bars.children].map(b=>b.style.height);
+[...bars.children].forEach(b=>b.style.height='4%');
+new IntersectionObserver((es,ob)=>{if(es[0].isIntersecting){[...bars.children].forEach((b,i)=>setTimeout(()=>b.style.height=heights[i],i*60));ob.disconnect()}},{threshold:.4}).observe(bars);
+</script>
+</body>
+</html>
